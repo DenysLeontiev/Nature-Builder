@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ObjectSpawner : MonoBehaviour
+public class NatureSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject objectToSpawn;
+    [SerializeField] private Grass currentObjectToSpawn;
     [SerializeField] private float yOffset = 0.5f;
     [SerializeField] private float radius = 0.05f;
 
@@ -24,24 +25,18 @@ public class ObjectSpawner : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit))
             {
-                var obj = Instantiate(objectToSpawn);
+                var spawnedObj = Instantiate(currentObjectToSpawn);
                 Vector3 spawnPoint = hit.point;
                 spawnPoint.y -= yOffset;
-                obj.transform.position = spawnPoint;
+                spawnedObj.transform.position = spawnPoint;
 
-                Collider[] colliders = Physics.OverlapSphere(obj.transform.position, radius);
+                Collider[] colliders = Physics.OverlapSphere(spawnedObj.transform.position, radius);
 
                 foreach (Collider collider in colliders)
                 {
-                    if(collider.name.Contains("Grass"))
+                    if (collider.transform.GetComponent<Grass>() != null)
                     {
-                        Destroy(obj.gameObject);
-                    }
-                    // Check if the collider belongs to a different GameObject
-                    if (collider.gameObject != gameObject)
-                    {
-                        // Do something with the GameObject that is currently touching this one
-                        Debug.Log("Currently touching: " + collider.gameObject.name);
+                        Destroy(spawnedObj.gameObject);
                     }
                 }
             }
