@@ -9,6 +9,9 @@ public class NatureSpawner : MonoBehaviour
     [SerializeField] private float yOffset = 0.5f;
     [SerializeField] private float radius = 0.05f;
 
+    [SerializeField] private float minRotationY = 0f;
+    [SerializeField] private float maxRotationY = 360f;
+
     private Camera mainCamera;
 
     private void Start()
@@ -29,6 +32,9 @@ public class NatureSpawner : MonoBehaviour
                 Vector3 spawnPoint = hit.point;
                 spawnPoint.y -= yOffset;
                 spawnedObj.transform.position = spawnPoint;
+
+                float randomYRot = Random.Range(minRotationY, maxRotationY);
+                spawnedObj.transform.rotation = Quaternion.Euler(spawnedObj.transform.rotation.x, randomYRot, spawnedObj.transform.rotation.z);
 
                 Collider[] colliders = Physics.OverlapSphere(spawnedObj.transform.position, radius);
 

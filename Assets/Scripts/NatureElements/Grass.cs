@@ -5,18 +5,14 @@ using UnityEngine;
 
 public class Grass : PlantBase
 {
-    private float maxTime = 5f;
-    private float currentTime;
-
-    private void Start()
+    private new void Start()
     {
-        AddBehaviour();
-        SetPlantState(PlantState.Planted);
+        base.Start();
     }
 
-    private void Update()
+    private new void Update()
     {
-        HandleStates();
+        base.Update();
     }
 
     protected override void AddBehaviour()
@@ -32,9 +28,8 @@ public class Grass : PlantBase
         currentTime -= Time.deltaTime;
         if (currentTime <= 0)
         {
-            currentTime = maxTime;
+            currentTime = plantSO.GrownTime;
             SetPlantState(PlantState.Grown);
-            Debug.Log("I am Planted");
         }
     }
 
@@ -43,9 +38,8 @@ public class Grass : PlantBase
         currentTime -= Time.deltaTime;
         if (currentTime <= 0)
         {
-            currentTime = maxTime;
+            currentTime = plantSO.OldTime;
             SetPlantState(PlantState.Old);
-            Debug.Log("I am Grown");
         }
     }
 
@@ -54,9 +48,8 @@ public class Grass : PlantBase
         currentTime -= Time.deltaTime;
         if (currentTime <= 0)
         {
-            currentTime = maxTime;
+            currentTime = plantSO.DeadTime;
             SetPlantState(PlantState.Dead);
-            Debug.Log("I am Old");
         }
     }
 
@@ -65,8 +58,6 @@ public class Grass : PlantBase
         currentTime -= Time.deltaTime;
         if (currentTime <= 0)
         {
-            currentTime = maxTime;
-            Debug.Log("I am Dead");
             Destroy(gameObject);
         }
     }

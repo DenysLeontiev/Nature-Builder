@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658bc4e429331c04bb30499464cd2aab, type: 3}
+  m_Name: GrassScriptableObject
+  m_EditorClassIdentifier: 
+  PlantedPrefab: {fileID: 4183649427906162493, guid: 002b1fceb761e4e479b394e146577d7b, type: 3}
+  PlantedTime: 5
+  GrownPrefab: {fileID: 4183649427906162493, guid: 5ce5abc5192828948bb1dd483c911f23, type: 3}
+  GrownTime: 7
+  OldPrefab: {fileID: 4183649427906162493, guid: da1f2f001d019774680414ad874d4259, type: 3}
+  OldTime: 8
+  DeadPrefab: {fileID: 4183649427906162493, guid: 5ead80cac93f38e418b3dc2572c92486, type: 3}
+  DeadTime: 5
