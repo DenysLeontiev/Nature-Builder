@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658bc4e429331c04bb30499464cd2aab, type: 3}
   m_Name: GrassScriptableObject
   m_EditorClassIdentifier: 
+  delayBetweenSpawnTime: 3
   PlantedPrefab: {fileID: 4183649427906162493, guid: 002b1fceb761e4e479b394e146577d7b, type: 3}
   PlantedTime: 5
   GrownPrefab: {fileID: 4183649427906162493, guid: 5ce5abc5192828948bb1dd483c911f23, type: 3}

@@ -1,20 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grass : PlantBase
+public class ChristmasTreeFirst : PlantBase
 {
-    private new void Start()
-    {
-        base.Start();
-    }
-
-    private new void Update()
-    {
-        base.Update();
-    }
-
     protected override void AddBehaviour()
     {
         stateActions[PlantState.Planted] = PlantedState;

@@ -11,11 +11,12 @@ public abstract class PlantBase : MonoBehaviour
 
     protected int currentActiveObjectIndex;
 
-    protected float currentTime;
+    protected float currentTimeBetweenStates;
+    protected float currentTimeBetweenSpawn;
 
     protected void Start()
     {
-        currentTime = plantSO.PlantedTime;
+        currentTimeBetweenStates = plantSO.PlantedTime;
 
         AddBehaviour();
         SetPlantState(PlantState.Planted);
@@ -75,6 +76,11 @@ public abstract class PlantBase : MonoBehaviour
         }
 
         currentActiveObjectIndex++;
+    }
+
+    public PlantSO GetPlantSO()
+    {
+        return plantSO;
     }
 
     protected abstract void PlantedState();

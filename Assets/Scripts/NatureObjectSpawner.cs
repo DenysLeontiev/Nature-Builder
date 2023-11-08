@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GrassSpawner : MonoBehaviour
+
+/// <summary>
+/// Random grass spawning
+/// </summary>
+public class NatureObjectSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject grass;
     [SerializeField] private float yOffset = 0.05f;
@@ -22,7 +26,7 @@ public class GrassSpawner : MonoBehaviour
         }
     }
 
-    public Vector3 RandomNavmeshLocation(float radius)
+    private Vector3 RandomNavmeshLocation(float radius)
     {
         Vector3 randomDirection = Random.insideUnitSphere * radius;
         randomDirection += transform.position;
