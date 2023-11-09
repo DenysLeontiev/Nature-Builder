@@ -6,6 +6,8 @@ using UnityEngine;
 public abstract class PlantBase : MonoBehaviour
 {
     [SerializeField] protected PlantSO plantSO;
+    [SerializeField] protected GameObject moneyPrefab;
+
     protected PlantState currentState = PlantState.Planted;
     protected Dictionary<PlantState, Action> stateActions = new Dictionary<PlantState, Action>();
 
@@ -26,6 +28,27 @@ public abstract class PlantBase : MonoBehaviour
     {
         HandleStates();
     }
+    public PlantSO GetPlantSO()
+    {
+        return plantSO;
+    }
+
+    protected void SpawnMoney()
+    {
+        for (int i = 0; i < plantSO.MoneyReward; i++)
+        {
+            Vector3 currentPos = transform.position;
+            float radiusOffset = 0.5f;
+
+            // Calculate a random point in the upper hemisphere
+            Vector3 spawnPos = currentPos + UnityEngine.Random.onUnitSphere * radiusOffset;
+            float yOffset = 2f;
+            spawnPos.y = Mathf.Abs(spawnPos.y) + yOffset; // Ensure the prefab is spawned in the top part of the sphere
+
+            var instantiatedMoney = Instantiate(moneyPrefab, spawnPos, Quaternion.identity);
+        }
+    }
+
 
     protected virtual void AddBehaviour()
     {
@@ -57,9 +80,18 @@ public abstract class PlantBase : MonoBehaviour
                 break;
             case PlantState.Dead:
                 HandleObjectStateVisual();
+                SpawnMoney();
                 break;
         }
     }
+
+    protected abstract void PlantedState();
+
+    protected abstract void GrownState();
+
+    protected abstract void OldState();
+    protected abstract void DeadState();
+
 
     private void HandleObjectStateVisual()
     {
@@ -77,17 +109,4 @@ public abstract class PlantBase : MonoBehaviour
 
         currentActiveObjectIndex++;
     }
-
-    public PlantSO GetPlantSO()
-    {
-        return plantSO;
-    }
-
-    protected abstract void PlantedState();
-
-    protected abstract void GrownState();
-
-    protected abstract void OldState();
-    protected abstract void DeadState();
-
 }

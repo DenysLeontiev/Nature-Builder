@@ -122,8 +122,8 @@ public class NatureSpawner : MonoBehaviour
 
         currentPlantToSpawn = plant;
 
-        currentTimeBetweenSpawn = plant.GetPlantSO().delayBetweenSpawnTime;
-        timeBetweenSpawnMax = plant.GetPlantSO().delayBetweenSpawnTime;
+        currentTimeBetweenSpawn = plant.GetPlantSO().DelayBetweenSpawnTime;
+        timeBetweenSpawnMax = plant.GetPlantSO().DelayBetweenSpawnTime;
 
         isGameObjectIndicatorInstantiated = false;
 

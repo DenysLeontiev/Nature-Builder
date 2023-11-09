@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658bc4e429331c04bb30499464cd2aab, type: 3}
   m_Name: TreeScriptableObject
   m_EditorClassIdentifier: 
-  delayBetweenSpawnTime: 10
+  DelayBetweenSpawnTime: 10
+  MoneyReward: 5
   TransparentObjectIndicator: {fileID: 856392133302229459, guid: a55f82c321fc80d4096126903a4695f4, type: 3}
   PlantedPrefab: {fileID: 0}
   PlantedTime: 10

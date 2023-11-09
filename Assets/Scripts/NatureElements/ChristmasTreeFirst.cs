@@ -45,6 +45,7 @@ public class ChristmasTreeFirst : PlantBase
     protected override void DeadState()
     {
         currentTimeBetweenStates -= Time.deltaTime;
+
         if (currentTimeBetweenStates <= 0)
         {
             Destroy(gameObject);

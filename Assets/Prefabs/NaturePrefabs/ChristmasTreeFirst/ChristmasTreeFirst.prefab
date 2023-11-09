@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantSO: {fileID: 11400000, guid: 7c27a2403c18611489ef9a8133dc33ea, type: 2}
+  moneyPrefab: {fileID: 5010042301583514149, guid: 6addff70db632464bbf152c7d64cb247, type: 3}
 --- !u!65 &1178348042929523993
 BoxCollider:
   m_ObjectHideFlags: 0

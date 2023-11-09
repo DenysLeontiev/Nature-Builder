@@ -24,7 +24,7 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler
 
         if(plantCurrentTimeData.plant == plantToSpawn)
         {
-            indicatorImage.fillAmount = plantCurrentTimeData.plantCurrentTimeBetweenSpawn / plantToSpawn.GetPlantSO().delayBetweenSpawnTime;
+            indicatorImage.fillAmount = plantCurrentTimeData.plantCurrentTimeBetweenSpawn / plantToSpawn.GetPlantSO().DelayBetweenSpawnTime;
         }
         else
         {

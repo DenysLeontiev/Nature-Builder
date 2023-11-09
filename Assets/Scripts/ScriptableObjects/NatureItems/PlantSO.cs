@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlantSO", menuName = "Nature/Plant")]
 public class PlantSO : ScriptableObject
 {
-    public float delayBetweenSpawnTime;
+    public float DelayBetweenSpawnTime;
+    public int MoneyReward;
 
     public GameObject TransparentObjectIndicator;
 
