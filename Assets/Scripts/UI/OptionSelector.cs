@@ -18,6 +18,10 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler
     private void Update()
     {
         (PlantBase plant, float plantCurrentTimeBetweenSpawn) plantCurrentTimeData = NatureSpawner.Instance.GetCurrentObjectAndTimeBetweenSpawn();
+
+        if (plantCurrentTimeData.plant == null)
+            return;
+
         if(plantCurrentTimeData.plant == plantToSpawn)
         {
             indicatorImage.fillAmount = plantCurrentTimeData.plantCurrentTimeBetweenSpawn / plantToSpawn.GetPlantSO().delayBetweenSpawnTime;
@@ -30,12 +34,7 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler
 
     private void Instance_OnPlantChanged(object sender, NatureSpawner.OnPlantChangedEventArgs e)
     {
-        if(e.plantBase == plantToSpawn)
-        {
-            Debug.Log("He he, it is " + plantToSpawn);
-            Debug.Log("currentTimeBetweenSpawn => " + e.currentTimeBetweenSpawn);
-            Debug.Log("timeBetweenSpawnMax => " + e.timeBetweenSpawnMax);
-        }
+
     }
 
     public void OnPointerDown(PointerEventData eventData)

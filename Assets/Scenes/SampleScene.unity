@@ -815,7 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c050cad269ff50b4898ec21e61996848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentObjectToSpawn: {fileID: 803114957569427619, guid: 8455f409c55ff3f4a8224ed0ac5bf9a5, type: 3}
+  transparentIndicatorPrefeb: {fileID: 856392133302229459, guid: a55f82c321fc80d4096126903a4695f4, type: 3}
   yOffset: 0
   radius: 0.02
   minRotationY: 0

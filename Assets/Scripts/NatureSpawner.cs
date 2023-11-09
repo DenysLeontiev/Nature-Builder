@@ -8,6 +8,9 @@ public class NatureSpawner : MonoBehaviour
 {
     public static NatureSpawner Instance { get; private set; }
 
+    private GameObject currentGameObjectIndicator;
+    private bool isGameObjectIndicatorInstantiated;
+
     public class OnPlantChangedEventArgs : EventArgs
     {
         public PlantBase plantBase;
@@ -43,25 +46,58 @@ public class NatureSpawner : MonoBehaviour
     private void Update()
     {
         SpawnObject();
+        ShowCurrentPlantVisual();
     }
+
+    private void ShowCurrentPlantVisual()
+    {
+        if (currentPlantToSpawn == null)
+        {
+            return;
+        }
+
+        if (Physics.Raycast(GetRay(), out RaycastHit hit))
+        {
+            if (isGameObjectIndicatorInstantiated == false)
+            {
+                currentGameObjectIndicator = Instantiate(currentPlantToSpawn.GetPlantSO().TransparentObjectIndicator, hit.point, Quaternion.identity);
+                isGameObjectIndicatorInstantiated = true;
+            }
+            else
+            {
+                currentGameObjectIndicator.SetActive(true);
+                currentGameObjectIndicator.transform.position = hit.point;
+            }
+        }
+        else
+        {
+            if(currentGameObjectIndicator != null)
+                currentGameObjectIndicator.SetActive(false);
+            isGameObjectIndicatorInstantiated = false;
+        }
+    }
+
     public (PlantBase plantBase, float plantCurrentTimeBetweenSpawn) GetCurrentObjectAndTimeBetweenSpawn()
     {
         return (currentPlantToSpawn, currentTimeBetweenSpawn);
     }
 
-
-    public float GetCurrentTimeBetweenSpawn()
-    {
-        return currentTimeBetweenSpawn;
-    }
-
     public void SetObjectToSpawn(PlantBase plant)
     {
+        if(currentPlantToSpawn == plant)
+        {
+            return;
+        }
+
         currentPlantToSpawn = plant;
 
         currentTimeBetweenSpawn = plant.GetPlantSO().delayBetweenSpawnTime;
         timeBetweenSpawnMax = plant.GetPlantSO().delayBetweenSpawnTime;
 
+        isGameObjectIndicatorInstantiated = false;
+
+        if(currentGameObjectIndicator != null)
+            Destroy(currentGameObjectIndicator.gameObject);
 
         OnPlantChanged?.Invoke(this, new OnPlantChangedEventArgs { plantBase = plant,currentTimeBetweenSpawn = this.currentTimeBetweenSpawn, timeBetweenSpawnMax = this.timeBetweenSpawnMax });
     }
@@ -76,10 +112,7 @@ public class NatureSpawner : MonoBehaviour
         currentTimeBetweenSpawn -= Time.deltaTime;
         if (Input.GetMouseButtonUp(0) && currentTimeBetweenSpawn < 0f)
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(GetRay(), out RaycastHit hit))
             {
                 var spawnedObj = Instantiate(currentPlantToSpawn);
                 Vector3 spawnPoint = hit.point;
@@ -102,5 +135,10 @@ public class NatureSpawner : MonoBehaviour
 
             currentTimeBetweenSpawn = timeBetweenSpawnMax;
         }
+    }
+
+    private Ray GetRay()
+    {
+        return mainCamera.ScreenPointToRay(Input.mousePosition);
     }
 }

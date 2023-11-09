@@ -7,6 +7,8 @@ public class PlantSO : ScriptableObject
 {
     public float delayBetweenSpawnTime;
 
+    public GameObject TransparentObjectIndicator;
+
     public GameObject PlantedPrefab;
     public float PlantedTime;
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TreeScriptableObject
   m_EditorClassIdentifier: 
   delayBetweenSpawnTime: 10
+  TransparentObjectIndicator: {fileID: 856392133302229459, guid: a55f82c321fc80d4096126903a4695f4, type: 3}
   PlantedPrefab: {fileID: 0}
   PlantedTime: 10
   GrownPrefab: {fileID: 0}
