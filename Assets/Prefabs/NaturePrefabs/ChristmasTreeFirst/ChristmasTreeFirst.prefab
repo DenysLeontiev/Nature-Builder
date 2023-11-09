@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3400398934725261715}
   - component: {fileID: 803114957569427619}
-  - component: {fileID: 7565415755035865435}
+  - component: {fileID: 1178348042929523993}
   m_Layer: 0
   m_Name: ChristmasTreeFirst
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantSO: {fileID: 11400000, guid: 7c27a2403c18611489ef9a8133dc33ea, type: 2}
---- !u!65 &7565415755035865435
+--- !u!65 &1178348042929523993
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,8 +61,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 4.2180724, z: 1}
+  m_Center: {x: 0, y: 2.092121, z: 0}
 --- !u!1001 &897073910269480178
 PrefabInstance:
   m_ObjectHideFlags: 0

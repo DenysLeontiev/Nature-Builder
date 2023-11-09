@@ -8,9 +8,6 @@ public class NatureSpawner : MonoBehaviour
 {
     public static NatureSpawner Instance { get; private set; }
 
-    private GameObject currentGameObjectIndicator;
-    private bool isGameObjectIndicatorInstantiated;
-
     public class OnPlantChangedEventArgs : EventArgs
     {
         public PlantBase plantBase;
@@ -20,11 +17,20 @@ public class NatureSpawner : MonoBehaviour
 
     public event EventHandler<OnPlantChangedEventArgs> OnPlantChanged;
 
+    [Header("SpawnPlantOffset")]
     [SerializeField] private float yOffset = 0.5f;
     [SerializeField] private float radius = 0.05f;
 
+    [Header("RandomPlantSpawnLocation")]
     [SerializeField] private float minRotationY = 0f;
     [SerializeField] private float maxRotationY = 360f;
+
+    [Header("AvailabilityMaterials")]
+    [SerializeField] private Material notAvailableMaterial;
+    [SerializeField] private Material availableMaterial;
+
+    private GameObject currentGameObjectIndicator;
+    private bool isGameObjectIndicatorInstantiated;
 
     private PlantBase currentPlantToSpawn;
 
@@ -47,6 +53,29 @@ public class NatureSpawner : MonoBehaviour
     {
         SpawnObject();
         ShowCurrentPlantVisual();
+        HandlePrefabIndicatorVisuals();
+    }
+
+    private void HandlePrefabIndicatorVisuals()
+    {
+        if (currentGameObjectIndicator != null)
+        {
+            Collider[] colliders = Physics.OverlapSphere(currentGameObjectIndicator.transform.position, radius);
+
+            MeshRenderer currentGameObjectIndicatorMeshRenderer = currentGameObjectIndicator.GetComponent<MeshRenderer>();
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.transform.GetComponent<PlantBase>() != null)
+                {
+                    currentGameObjectIndicatorMeshRenderer.material = notAvailableMaterial;
+                }
+                else
+                {
+                    currentGameObjectIndicatorMeshRenderer.material = availableMaterial;
+                }
+            }
+        }
     }
 
     private void ShowCurrentPlantVisual()
@@ -72,7 +101,9 @@ public class NatureSpawner : MonoBehaviour
         else
         {
             if(currentGameObjectIndicator != null)
-                currentGameObjectIndicator.SetActive(false);
+            {
+                Destroy(currentGameObjectIndicator.gameObject);
+            }
             isGameObjectIndicatorInstantiated = false;
         }
     }
