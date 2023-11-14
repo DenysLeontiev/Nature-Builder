@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: GrassScriptableObject
   m_EditorClassIdentifier: 
   DelayBetweenSpawnTime: 3
-  MoneyReward: 1
+  MoneyReward: 15
   TransparentObjectIndicator: {fileID: 4183649427906162493, guid: 0c9882b14bf9d5640a9b3ca14bf93c4b, type: 3}
   PlantedPrefab: {fileID: 4183649427906162493, guid: 002b1fceb761e4e479b394e146577d7b, type: 3}
-  PlantedTime: 5
+  PlantedTime: 2
   GrownPrefab: {fileID: 4183649427906162493, guid: 5ce5abc5192828948bb1dd483c911f23, type: 3}
-  GrownTime: 7
+  GrownTime: 2
   OldPrefab: {fileID: 4183649427906162493, guid: da1f2f001d019774680414ad874d4259, type: 3}
-  OldTime: 8
+  OldTime: 2
   DeadPrefab: {fileID: 4183649427906162493, guid: 5ead80cac93f38e418b3dc2572c92486, type: 3}
-  DeadTime: 5
+  DeadTime: 2

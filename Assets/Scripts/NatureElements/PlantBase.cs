@@ -45,9 +45,28 @@ public abstract class PlantBase : MonoBehaviour
             float yOffset = 2f;
             spawnPos.y = Mathf.Abs(spawnPos.y) + yOffset; // Ensure the prefab is spawned in the top part of the sphere
 
-            var instantiatedMoney = Instantiate(moneyPrefab, spawnPos, Quaternion.identity);
+            var instantiatedMoney = Instantiate(moneyPrefab);
+
+            StartCoroutine(MoveMoneyToPosition(instantiatedMoney, transform.position + Vector3.up * 2f, 0.5f));
         }
     }
+
+    private IEnumerator MoveMoneyToPosition(GameObject moneyObject, Vector3 targetPosition, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 startingPosition = moneyObject.transform.position;
+
+        while (elapsed < duration)
+        {
+            moneyObject.transform.position = Vector3.Lerp(startingPosition, targetPosition, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the moneyObject is exactly at the target position
+        moneyObject.transform.position = targetPosition;
+    }
+
 
 
     protected virtual void AddBehaviour()

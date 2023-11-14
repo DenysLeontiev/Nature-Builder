@@ -80,31 +80,29 @@ public class NatureSpawner : MonoBehaviour
 
     private void ShowCurrentPlantVisual()
     {
-        if (currentPlantToSpawn == null)
+        if(currentPlantToSpawn != null)
         {
-            return;
-        }
-
-        if (Physics.Raycast(GetRay(), out RaycastHit hit))
-        {
-            if (isGameObjectIndicatorInstantiated == false)
+            if (Physics.Raycast(GetRay(), out RaycastHit hit))
             {
-                currentGameObjectIndicator = Instantiate(currentPlantToSpawn.GetPlantSO().TransparentObjectIndicator, hit.point, Quaternion.identity);
-                isGameObjectIndicatorInstantiated = true;
+                if (isGameObjectIndicatorInstantiated == false)
+                {
+                    currentGameObjectIndicator = Instantiate(currentPlantToSpawn.GetPlantSO().TransparentObjectIndicator, hit.point, Quaternion.identity);
+                    isGameObjectIndicatorInstantiated = true;
+                }
+                else
+                {
+                    currentGameObjectIndicator.SetActive(true);
+                    currentGameObjectIndicator.transform.position = hit.point;
+                }
             }
             else
             {
-                currentGameObjectIndicator.SetActive(true);
-                currentGameObjectIndicator.transform.position = hit.point;
+                if (currentGameObjectIndicator != null)
+                {
+                    Destroy(currentGameObjectIndicator.gameObject);
+                }
+                isGameObjectIndicatorInstantiated = false;
             }
-        }
-        else
-        {
-            if(currentGameObjectIndicator != null)
-            {
-                Destroy(currentGameObjectIndicator.gameObject);
-            }
-            isGameObjectIndicatorInstantiated = false;
         }
     }
 
@@ -135,11 +133,6 @@ public class NatureSpawner : MonoBehaviour
 
     private void SpawnObject()
     {
-        if(currentPlantToSpawn == null)
-        {
-            return;
-        }
-
         currentTimeBetweenSpawn -= Time.deltaTime;
         if (Input.GetMouseButtonUp(0) && currentTimeBetweenSpawn < 0f)
         {
