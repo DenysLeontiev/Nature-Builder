@@ -16,6 +16,11 @@ public class Money : MonoBehaviour
         fadeSpeed = Random.Range(fadeSpeedMin, fadeSpeedMax);
     }
 
+    private void OnMouseDown()
+    {
+        isFadeOut = true;
+    }
+
     private void Update()
     {
         HandleSelfDestruction();
@@ -41,10 +46,13 @@ public class Money : MonoBehaviour
 
     private void HandleSelfDestruction()
     {
-        selfDestructionTime -= Time.deltaTime;
-        if (selfDestructionTime <= 0)
+        if(isFadeOut == false)
         {
-            isFadeOut = true;
+            selfDestructionTime -= Time.deltaTime;
+            if (selfDestructionTime <= 0)
+            {
+                isFadeOut = true;
+            }
         }
     }
 

@@ -51,6 +51,11 @@ public class NatureSpawner : MonoBehaviour
 
     private void Update()
     {
+        if(currentPlantToSpawn == null)
+        {
+            return;
+        }
+
         SpawnObject();
         ShowCurrentPlantVisual();
         HandlePrefabIndicatorVisuals();
@@ -155,10 +160,18 @@ public class NatureSpawner : MonoBehaviour
                         Destroy(spawnedObj.gameObject);
                     }
                 }
-            }
 
+                ResetCurrentPlantToSpawn();
+
+            }
             currentTimeBetweenSpawn = timeBetweenSpawnMax;
         }
+    }
+
+    private void ResetCurrentPlantToSpawn()
+    {
+        currentPlantToSpawn = null;
+        currentGameObjectIndicator.SetActive(false);
     }
 
     private Ray GetRay()

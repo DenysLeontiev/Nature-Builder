@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlantSO : ScriptableObject
 {
     public float DelayBetweenSpawnTime;
+    public int MoneyToSpawn;
     public int MoneyReward;
 
     public GameObject TransparentObjectIndicator;

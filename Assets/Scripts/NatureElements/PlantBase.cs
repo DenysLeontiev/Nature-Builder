@@ -33,6 +33,12 @@ public abstract class PlantBase : MonoBehaviour
         return plantSO;
     }
 
+
+    public void ResetTimeBetweenSpawn()
+    {
+        currentTimeBetweenSpawn = plantSO.DelayBetweenSpawnTime;
+    }
+    
     protected void SpawnMoney()
     {
         for (int i = 0; i < plantSO.MoneyReward; i++)

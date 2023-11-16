@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TreeScriptableObject
   m_EditorClassIdentifier: 
   DelayBetweenSpawnTime: 10
+  MoneyToSpawn: 10
   MoneyReward: 5
   TransparentObjectIndicator: {fileID: 856392133302229459, guid: a55f82c321fc80d4096126903a4695f4, type: 3}
   PlantedPrefab: {fileID: 0}

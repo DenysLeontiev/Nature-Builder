@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 4809752162735541943}
   - component: {fileID: 4809752162735541942}
   m_Layer: 5
-  m_Name: GrassSprite
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
