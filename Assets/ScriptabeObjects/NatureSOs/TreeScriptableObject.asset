@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658bc4e429331c04bb30499464cd2aab, type: 3}
   m_Name: TreeScriptableObject
   m_EditorClassIdentifier: 
+  PlantName: FirstChristmasTree
+  PlantDescription: This is first and the cheapest type of Christmas tree, so there
+    is nothing much going under it :(
   DelayBetweenSpawnTime: 10
   MoneyToSpawn: 10
   MoneyReward: 5

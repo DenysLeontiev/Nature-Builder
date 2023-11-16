@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlantSO", menuName = "Nature/Plant")]
 public class PlantSO : ScriptableObject
 {
+    public string PlantName;
+    [TextArea(2, 4)]
+    public string PlantDescription;
+
     public float DelayBetweenSpawnTime;
     public int MoneyToSpawn;
     public int MoneyReward;
@@ -22,4 +26,10 @@ public class PlantSO : ScriptableObject
 
     public GameObject DeadPrefab;
     public float DeadTime;
+
+    public float GetTotalLifeTime()
+    {
+        return PlantedTime + GrownTime + OldTime +DeadTime;
+    }
+
 }

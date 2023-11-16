@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658bc4e429331c04bb30499464cd2aab, type: 3}
   m_Name: GrassScriptableObject
   m_EditorClassIdentifier: 
+  PlantName: Grass
+  PlantDescription: Just ordinary grass.Brings almost nothing. What do you expect
+    from grass...
   DelayBetweenSpawnTime: 3
   MoneyToSpawn: 1
   MoneyReward: 15
