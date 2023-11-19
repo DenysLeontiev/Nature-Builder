@@ -22,6 +22,8 @@ public class Tooltip : MonoBehaviour
 	private void Start()
 	{
 		backgroundRectTransform = GetComponent<RectTransform>();
+
+		gameObject.SetActive(false);
 	}
 
 	private void Update()
