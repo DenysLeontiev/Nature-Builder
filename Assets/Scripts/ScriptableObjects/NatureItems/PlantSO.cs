@@ -13,6 +13,8 @@ public class PlantSO : ScriptableObject
     public int MoneyToSpawn;
     public int MoneyReward;
 
+    public Sprite PlantSprite;
+
     public GameObject TransparentObjectIndicator;
 
     public GameObject PlantedPrefab;

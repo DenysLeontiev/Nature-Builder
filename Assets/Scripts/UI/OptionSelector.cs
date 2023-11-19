@@ -11,15 +11,15 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler, IPointerEnterH
     [SerializeField] private PlantBase plantToSpawn;
 
     [Header("UI Elements")]
-    [SerializeField] private GameObject infoPanel;
     [SerializeField] private Image indicatorImage;
     [SerializeField] private TextMeshProUGUI moneyAmountToSpawnText;
+    [SerializeField] private GameObject tooltipPanel;
 
-    private void Start()
+	private void Start()
     {
         NatureSpawner.Instance.OnPlantChanged += Instance_OnPlantChanged;
         SetMoneyAmountToSpawnText(plantToSpawn.GetPlantSO().MoneyToSpawn);
-    }
+	}
 
     private void Update()
     {
@@ -48,51 +48,28 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler, IPointerEnterH
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        ShowInfoPanel();
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        HideInfoPanel();
-    }
-
     private void SetMoneyAmountToSpawnText(float amountToSpawn)
     {
         moneyAmountToSpawnText.text = amountToSpawn.ToString();
-    }
-
-    private void ShowInfoPanel()
-    {
-        infoPanel.SetActive(true);
-        DisplayCurrentPlantDetails();
-    }
-
-    private void HideInfoPanel()
-    {
-        infoPanel.SetActive(false);
-    }
-
-    private void DisplayCurrentPlantDetails()
-    {
-        PlantSO currentPlantSO = plantToSpawn.GetPlantSO();
-
-        TextMeshProUGUI plantName = infoPanel.transform.Find("PlantName").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI plantReward = infoPanel.transform.Find("PlantReward").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI plantSpawnRate = infoPanel.transform.Find("PlantSpawnRate").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI plantGrowTime = infoPanel.transform.Find("PlantGrowTime").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI plantDescription = infoPanel.transform.Find("DescriptionPanel").Find("DescriptionText").GetComponent<TextMeshProUGUI>();
-
-        plantName.text = $"Name: {currentPlantSO.PlantName}";
-        plantReward.text = $"Reward: {currentPlantSO.MoneyReward}";
-        plantSpawnRate.text = $"SpawnRate: {currentPlantSO.DelayBetweenSpawnTime} sec";
-        plantGrowTime.text = $"LifeTime: {currentPlantSO.GetTotalLifeTime()} sec";
-        plantDescription.text = currentPlantSO.PlantDescription;
     }
 
     private void Instance_OnPlantChanged(object sender, NatureSpawner.OnPlantChangedEventArgs e)
     {
 
     }
+
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+        PlantSO plantSO = plantToSpawn.GetPlantSO();
+
+		tooltipPanel.GetComponent<Tooltip>().SetTooltipInfo(plantSO.PlantName, plantSO.PlantDescription, plantSO.PlantSprite);
+
+		//Tooltip.Instance.SetTooltipInfo(plantSO.PlantName, plantSO.PlantDescription, plantSO.PlantSprite);
+        tooltipPanel.SetActive(true);
+	}
+
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		tooltipPanel.SetActive(false);
+	}
 }

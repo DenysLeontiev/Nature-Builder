@@ -18,6 +18,7 @@ MonoBehaviour:
   DelayBetweenSpawnTime: 3
   MoneyToSpawn: 1
   MoneyReward: 15
+  PlantSprite: {fileID: 21300000, guid: 9dce433b15a2cd640819e20608291d82, type: 3}
   TransparentObjectIndicator: {fileID: 4183649427906162493, guid: 0c9882b14bf9d5640a9b3ca14bf93c4b, type: 3}
   PlantedPrefab: {fileID: 4183649427906162493, guid: 002b1fceb761e4e479b394e146577d7b, type: 3}
   PlantedTime: 2

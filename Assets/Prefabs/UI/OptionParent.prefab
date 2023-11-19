@@ -270,6 +270,8 @@ MonoBehaviour:
   infoPanel: {fileID: 6857092370022292136, guid: d1a36347d91807c4bbc084007152ac54, type: 3}
   indicatorImage: {fileID: 4809752162362700133}
   moneyAmountToSpawnText: {fileID: 1812065454440762632}
+  timeToTriggerInfoPanel: 1
+  infoPan: {fileID: 0}
 --- !u!1 &4809752162735541936
 GameObject:
   m_ObjectHideFlags: 0
