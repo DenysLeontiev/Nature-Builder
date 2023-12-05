@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "AnimalSO", fileName = "Nature/Animal")]
-public class AnimalSO : ScriptableObject
+public class AnimalSO : PlaceableSO
 {
 	public float GrowTime;
 	public int GrowthRatio;

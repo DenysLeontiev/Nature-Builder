@@ -7,9 +7,25 @@ using UnityEngine.Rendering;
 
 public class YellowChicken : AnimalBase
 {
+	[SerializeField] private float rigidbodyEnambleTime = 0.5f;
+
 	private Grass[] thingsToEat = new Grass[0];
 	private Grass currentGrassToEat;
 
+	private float timeSinceLastEaten = 0;
+
+	private new void Start()
+	{
+		StartCoroutine(EnableRigidbody());
+
+		base.Start();
+	}
+
+	private IEnumerator EnableRigidbody()
+	{
+		yield return new WaitForSeconds(rigidbodyEnambleTime);
+		gameObject.AddComponent<Rigidbody>();
+	}
 	private void RoamAround()
 	{
 		if(thingsToEat.Length <= 0)
@@ -77,6 +93,7 @@ public class YellowChicken : AnimalBase
 		currentTimeBetweenStates -= Time.deltaTime;
 		if (currentTimeBetweenStates < 0)
 		{
+			timeSinceLastEaten = 0;
 			SetCurrentState(AnimalState.Walk);
 		}
 	}

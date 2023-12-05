@@ -3,21 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlantSO", menuName = "Nature/Plant")]
-public class PlantSO : ScriptableObject
+public class PlantSO : PlaceableSO
 {
-    public string PlantName;
-    [TextArea(2, 4)]
-    public string PlantDescription;
-
-    public float DelayBetweenSpawnTime;
-    public int MoneyToSpawn;
-    public int MoneyReward;
-
-    public Sprite PlantSprite;
-
-    public GameObject TransparentObjectIndicator;
-
-    public GameObject PlantedPrefab;
     public float PlantedTime;
 
     public GameObject GrownPrefab;

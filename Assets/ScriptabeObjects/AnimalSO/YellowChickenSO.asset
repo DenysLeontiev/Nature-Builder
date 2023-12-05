@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e9250916b05f6468c2a61139083c6f, type: 3}
   m_Name: YellowChickenSO
   m_EditorClassIdentifier: 
+  Name: Yellow Chicken
+  Description: Just tasty yellow chicken
+  DelayBetweenSpawnTime: 4
+  MoneyToSpawn: 1
+  MoneyReward: 5
+  Sprite: {fileID: 21300000, guid: f8c9467a892580344bb697526dac0d13, type: 3}
+  TransparentObjectIndicator: {fileID: 1767663768970106, guid: 82f56aeaeae60ea44a3aeaf0bc5a42b1, type: 3}
+  PlacedPrefab: {fileID: 1767663768970106, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
   GrowTime: 5
   GrowthRatio: 2
   IdleMinTime: 3

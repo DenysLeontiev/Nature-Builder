@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658bc4e429331c04bb30499464cd2aab, type: 3}
   m_Name: TreeScriptableObject
   m_EditorClassIdentifier: 
-  PlantName: FirstChristmasTree
-  PlantDescription: This is first and the cheapest type of Christmas tree, so there
-    is nothing much going under it :(
+  Name: FirstChristmasTree
+  Description: FirstChristmasTree
   DelayBetweenSpawnTime: 10
   MoneyToSpawn: 10
   MoneyReward: 5
-  PlantSprite: {fileID: 21300000, guid: 7501e1a0006ea0845994ef5436e832d9, type: 3}
+  Sprite: {fileID: 21300000, guid: 7501e1a0006ea0845994ef5436e832d9, type: 3}
   TransparentObjectIndicator: {fileID: 856392133302229459, guid: a55f82c321fc80d4096126903a4695f4, type: 3}
-  PlantedPrefab: {fileID: 0}
+  PlacedPrefab: {fileID: 3400398934725486003, guid: 8455f409c55ff3f4a8224ed0ac5bf9a5, type: 3}
   PlantedTime: 3
   GrownPrefab: {fileID: 0}
   GrownTime: 3

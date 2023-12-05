@@ -54,6 +54,11 @@ public abstract class AnimalBase : MonoBehaviour
 		}
 	}
 
+	public AnimalSO GetAnimalSO()
+	{
+		return animalSO;
+	}
+
 	private void HandleGrowth()
 	{
 		if (isGrown)

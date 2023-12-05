@@ -62,7 +62,7 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler, IPointerEnterH
 	{
         PlantSO plantSO = plantToSpawn.GetPlantSO();
 
-		tooltipPanel.GetComponent<Tooltip>().SetTooltipInfo(plantSO.PlantName, plantSO.PlantDescription, plantSO.PlantSprite);
+		tooltipPanel.GetComponent<Tooltip>().SetTooltipInfo(plantSO.Name, plantSO.Description, plantSO.Sprite);
 
 		//Tooltip.Instance.SetTooltipInfo(plantSO.PlantName, plantSO.PlantDescription, plantSO.PlantSprite);
         tooltipPanel.SetActive(true);
