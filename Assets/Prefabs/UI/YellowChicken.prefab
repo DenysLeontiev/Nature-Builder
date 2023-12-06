@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_AnchorMin.x
@@ -37,15 +37,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -77,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 280
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4809752162372008090, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -98,7 +98,7 @@ PrefabInstance:
     - target: {fileID: 4809752162735541942, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f2901efd8bb16bc408ad37f017fbf9bc, type: 3}
+      objectReference: {fileID: 21300000, guid: ee20d15fae4cbbf43a8ef1bcc93cab82, type: 3}
     - target: {fileID: 6359150833071549234, guid: 2065bdff6b38bce4296ab664160411d2, type: 3}
       propertyPath: plantToSpawn
       value: 

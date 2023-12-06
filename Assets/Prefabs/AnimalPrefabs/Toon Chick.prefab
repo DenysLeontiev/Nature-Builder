@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 95777776565643564}
   - component: {fileID: 182278726}
   - component: {fileID: 182278722}
+  - component: {fileID: 893180042}
   m_Layer: 0
   m_Name: Toon Chick
   m_TagString: Untagged
@@ -599,6 +600,22 @@ MonoBehaviour:
   animalSO: {fileID: 11400000, guid: 2d66362c1ed2019439874e9c8d00248f, type: 2}
   stopDistance: 0.4
   rigidbodyEnambleTime: 200
+--- !u!54 &893180042
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767663768970106}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1878532393300130
 GameObject:
   m_ObjectHideFlags: 0

@@ -137,11 +137,8 @@ public class AnimalSpawner : MonoBehaviour
 			{
 				var spawnedObj = Instantiate(currentAnimalToSpawn);
 				Vector3 spawnPoint = hit.point;
-				spawnPoint.y -= 0.5f;
+				spawnPoint.y += yOffset;
 				spawnedObj.transform.position = spawnPoint;
-
-				//float randomYRot = UnityEngine.Random.Range(minRotationY, maxRotationY);
-				//spawnedObj.transform.rotation = Quaternion.Euler(spawnedObj.transform.rotation.x, randomYRot, spawnedObj.transform.rotation.z);
 
 				Collider[] colliders = Physics.OverlapSphere(spawnedObj.transform.position, 0.1f);
 

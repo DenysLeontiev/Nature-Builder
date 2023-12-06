@@ -27,9 +27,9 @@ public class AnimalOptionSelector : MonoBehaviour, IPointerDownHandler, IPointer
 
 	private void Update()
 	{
-		(PlantBase plant, float plantCurrentTimeBetweenSpawn) plantCurrentTimeData = NatureSpawner.Instance.GetCurrentObjectAndTimeBetweenSpawn();
+		(AnimalBase animal, float plantCurrentTimeBetweenSpawn) plantCurrentTimeData = AnimalSpawner.Instance.GetCurrentObjectAndTimeBetweenSpawn();
 
-		if (plantCurrentTimeData.plant == animalToSpawn)
+		if (plantCurrentTimeData.animal == animalToSpawn)
 		{
 			indicatorImage.fillAmount = plantCurrentTimeData.plantCurrentTimeBetweenSpawn / animalToSpawn.GetAnimalSO().DelayBetweenSpawnTime;
 		}
