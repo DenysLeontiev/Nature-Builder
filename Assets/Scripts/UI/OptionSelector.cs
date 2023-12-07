@@ -24,7 +24,7 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler, IPointerEnterH
     {
         (IPlaceable plant, float plantCurrentTimeBetweenSpawn) plantCurrentTimeData = NatureSpawner.Instance.GetCurrentObjectAndTimeBetweenSpawn();
 
-        if(plantCurrentTimeData.plant == plantToSpawn)
+        if( (object)plantCurrentTimeData.plant == plantToSpawn)
         {
             indicatorImage.fillAmount = plantCurrentTimeData.plantCurrentTimeBetweenSpawn / plantToSpawn.GetPlantSO().DelayBetweenSpawnTime;
         }

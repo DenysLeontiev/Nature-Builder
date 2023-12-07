@@ -15,6 +15,8 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	protected float currentTimeBetweenStates;
 	protected Vector3 targetPosition;
 
+	protected float timeSinceLastEaten;
+
 	protected float radius = 10f;
 	private float growTime;
 	private bool isGrown;
@@ -32,6 +34,8 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 
 	protected void Update()
 	{
+		HandleTimeSinceLastEaten();
+
 		HandleGrowth();
 
 		switch (currentState)
@@ -52,6 +56,11 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 				RunAwayState();
 				break;
 		}
+	}
+
+	private void HandleTimeSinceLastEaten()
+	{
+		timeSinceLastEaten += Time.deltaTime;
 	}
 
 	public AnimalSO GetAnimalSO()
