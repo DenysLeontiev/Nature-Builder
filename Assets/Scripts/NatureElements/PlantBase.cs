@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlantBase : MonoBehaviour
+public abstract class PlantBase : MonoBehaviour, IPlaceable
 {
     [SerializeField] protected PlantSO plantSO;
     [SerializeField] protected GameObject moneyPrefab;
@@ -134,4 +134,9 @@ public abstract class PlantBase : MonoBehaviour
 
         currentActiveObjectIndex++;
     }
+
+	public PlaceableSO GetPlaceableSO()
+	{
+        return plantSO;
+	}
 }

@@ -16,18 +16,12 @@ public class AnimalOptionSelector : MonoBehaviour, IPointerDownHandler, IPointer
 
 	private void Start()
 	{
-		AnimalSpawner.Instance.OnAnimalChanged += Instance_OnAnimalChanged; ;
 		SetMoneyAmountToSpawnText(animalToSpawn.GetAnimalSO().MoneyToSpawn);
-	}
-
-	private void Instance_OnAnimalChanged(object sender, AnimalSpawner.OnAnimalChangedEventArgs e)
-	{
-		
 	}
 
 	private void Update()
 	{
-		(AnimalBase animal, float plantCurrentTimeBetweenSpawn) plantCurrentTimeData = AnimalSpawner.Instance.GetCurrentObjectAndTimeBetweenSpawn();
+		(IPlaceable animal, float plantCurrentTimeBetweenSpawn) plantCurrentTimeData = AnimalSpawner.Instance.GetCurrentObjectAndTimeBetweenSpawn();
 
 		if (plantCurrentTimeData.animal == animalToSpawn)
 		{

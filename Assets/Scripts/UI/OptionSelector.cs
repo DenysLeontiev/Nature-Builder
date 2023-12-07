@@ -17,13 +17,12 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler, IPointerEnterH
 
 	private void Start()
     {
-        NatureSpawner.Instance.OnPlantChanged += Instance_OnPlantChanged;
         SetMoneyAmountToSpawnText(plantToSpawn.GetPlantSO().MoneyToSpawn);
 	}
 
     private void Update()
     {
-        (PlantBase plant, float plantCurrentTimeBetweenSpawn) plantCurrentTimeData = NatureSpawner.Instance.GetCurrentObjectAndTimeBetweenSpawn();
+        (IPlaceable plant, float plantCurrentTimeBetweenSpawn) plantCurrentTimeData = NatureSpawner.Instance.GetCurrentObjectAndTimeBetweenSpawn();
 
         if(plantCurrentTimeData.plant == plantToSpawn)
         {
@@ -51,11 +50,6 @@ public class OptionSelector : MonoBehaviour, IPointerDownHandler, IPointerEnterH
     private void SetMoneyAmountToSpawnText(float amountToSpawn)
     {
         moneyAmountToSpawnText.text = amountToSpawn.ToString();
-    }
-
-    private void Instance_OnPlantChanged(object sender, NatureSpawner.OnPlantChangedEventArgs e)
-    {
-
     }
 
 	public void OnPointerEnter(PointerEventData eventData)

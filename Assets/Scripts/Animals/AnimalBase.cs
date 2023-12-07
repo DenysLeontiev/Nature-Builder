@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class AnimalBase : MonoBehaviour
+public abstract class AnimalBase : MonoBehaviour, IPlaceable
 {
 	[SerializeField] protected float moveSpeed = 1f;
 	[SerializeField] protected AnimalSO animalSO;
@@ -101,4 +101,9 @@ public abstract class AnimalBase : MonoBehaviour
 	protected abstract void EatState();
 	protected abstract void RunAwayState();
 	protected abstract void MultiplyState();
+
+	public PlaceableSO GetPlaceableSO()
+	{
+		return animalSO;
+	}
 }
