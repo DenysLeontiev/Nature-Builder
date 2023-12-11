@@ -29,7 +29,7 @@ public abstract class BaseSpawner : MonoBehaviour
 	{
 		mainCamera = Camera.main;
 	}
-	public abstract (IPlaceable plantBase, float plantCurrentTimeBetweenSpawn) GetCurrentObjectAndTimeBetweenSpawn();
+	public abstract (IPlaceable objBase, float plantCurrentTimeBetweenSpawn) GetCurrentObjectAndTimeBetweenSpawn();
 
 	protected void ShowCurrentObjectVisual(IPlaceable currentObjectToSpawn)
 	{
@@ -62,31 +62,25 @@ public abstract class BaseSpawner : MonoBehaviour
 	protected void SpawnObject(MonoBehaviour objectToSpawn)
 	{
 		currentTimeBetweenSpawn -= Time.deltaTime;
+
 		if (Input.GetMouseButtonUp(0) && currentTimeBetweenSpawn < 0f)
 		{
 			if (Physics.Raycast(GetRay(), out RaycastHit hit))
 			{
-				var spawnedObj = Instantiate(objectToSpawn);
 				Vector3 spawnPoint = hit.point;
 				spawnPoint.y += yOffset;
-				spawnedObj.transform.position = spawnPoint;
 
-				float randomYRot = UnityEngine.Random.Range(minRotationY, maxRotationY);
-				spawnedObj.transform.rotation = Quaternion.Euler(spawnedObj.transform.rotation.x, randomYRot, spawnedObj.transform.rotation.z);
-
-				Collider[] colliders = Physics.OverlapSphere(spawnedObj.transform.position, radius);
-
-				foreach (Collider collider in colliders)
+				if (IsValidSpawnPoint(spawnPoint))
 				{
-					if (collider.transform.GetComponent<PlantBase>() != null)
-					{
-						Destroy(spawnedObj.gameObject);
-					}
+					var spawnedObj = Instantiate(objectToSpawn, spawnPoint, Quaternion.identity);
+
+					float randomYRot = UnityEngine.Random.Range(minRotationY, maxRotationY);
+					spawnedObj.transform.rotation = Quaternion.Euler(spawnedObj.transform.rotation.x, randomYRot, spawnedObj.transform.rotation.z);
+
+					ResetCurrentObjectToSpawn();
 				}
-
-				ResetCurrentObjectToSpawn();
-
 			}
+
 			currentTimeBetweenSpawn = timeBetweenSpawnMax;
 		}
 	}
@@ -101,7 +95,7 @@ public abstract class BaseSpawner : MonoBehaviour
 
 			foreach (Collider collider in colliders)
 			{
-				if (collider.transform.GetComponent<PlantBase>() != null)
+				if (collider.transform.GetComponent<IPlaceable>() != null)
 				{
 					currentGameObjectIndicatorMeshRenderer.material = notAvailableMaterial;
 				}
@@ -118,5 +112,20 @@ public abstract class BaseSpawner : MonoBehaviour
 	protected Ray GetRay()
 	{
 		return mainCamera.ScreenPointToRay(Input.mousePosition);
+	}
+
+	private bool IsValidSpawnPoint(Vector3 spawnPoint)
+	{
+		Collider[] colliders = Physics.OverlapSphere(spawnPoint, radius);
+
+		foreach (Collider collider in colliders)
+		{
+			if (collider.GetComponent<IPlaceable>() != null)
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

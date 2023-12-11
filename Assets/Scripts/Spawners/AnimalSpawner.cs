@@ -27,7 +27,7 @@ public class AnimalSpawner : BaseSpawner
 		base.HandlePrefabIndicatorVisuals();
 	}
 
-	public override (IPlaceable plantBase, float plantCurrentTimeBetweenSpawn) GetCurrentObjectAndTimeBetweenSpawn()
+	public override (IPlaceable objBase, float plantCurrentTimeBetweenSpawn) GetCurrentObjectAndTimeBetweenSpawn()
 	{
 		return (currentAnimalToSpawn, currentTimeBetweenSpawn);
 	}
