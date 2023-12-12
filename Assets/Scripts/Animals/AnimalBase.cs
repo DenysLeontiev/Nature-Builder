@@ -12,6 +12,8 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	protected AnimalState currentState;
 	protected Animator animator;
 
+	protected Gender gender;
+
 	protected float currentTimeBetweenStates;
 	protected Vector3 targetPosition;
 
@@ -29,6 +31,8 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 		targetPosition = RandomNavmeshLocation(radius);
 
 		growTime = animalSO.GrowTime;
+
+		SetRandomGender();
 	}
 
 
@@ -61,6 +65,12 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	private void HandleTimeSinceLastEaten()
 	{
 		timeSinceLastEaten += Time.deltaTime;
+	}
+
+	private void SetRandomGender()
+	{
+		int randomNumber = Random.Range(0,3);
+		gender = (Gender)randomNumber;
 	}
 
 	public AnimalSO GetAnimalSO()

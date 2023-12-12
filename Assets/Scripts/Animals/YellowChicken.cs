@@ -12,7 +12,6 @@ public class YellowChicken : AnimalBase
 	private Grass[] thingsToEat = new Grass[0];
 	private Grass currentGrassToEat;
 
-
 	private new void Start()
 	{
 		StartCoroutine(EnableRigidbody());
