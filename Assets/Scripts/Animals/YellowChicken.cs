@@ -14,16 +14,9 @@ public class YellowChicken : AnimalBase
 
 	private new void Start()
 	{
-		StartCoroutine(EnableRigidbody());
-
 		base.Start();
 	}
 
-	private IEnumerator EnableRigidbody()
-	{
-		yield return new WaitForSeconds(rigidbodyEnambleTime);
-		gameObject.AddComponent<Rigidbody>();
-	}
 	private void RoamAround()
 	{
 		if(thingsToEat.Length <= 0)
@@ -34,17 +27,11 @@ public class YellowChicken : AnimalBase
 			}
 			else
 			{
-				SetCurrentState(AnimalState.Idle);
+				SetCurrentState(AnimalState.Multiply);
 				currentTimeBetweenStates = Random.Range(animalSO.IdleMinTime, animalSO.IdleMaxTime);
 				targetPosition = RandomNavmeshLocation(radius);
 			}
 		}
-	}
-
-	private void MoveTo(Vector3 targetPos)
-	{
-		transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
-		transform.LookAt(targetPos);
 	}
 
 	protected override void IdleState()
@@ -103,6 +90,6 @@ public class YellowChicken : AnimalBase
 
 	protected override void MultiplyState()
 	{
-		throw new System.NotImplementedException();
+		StartMultiplying();
 	}
 }
