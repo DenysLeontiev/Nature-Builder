@@ -11,6 +11,9 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	[SerializeField] protected AnimalSO animalSO;
 	[SerializeField] protected float stopDistance = 0.4f;
 
+	[Range(0, 10)]
+	[SerializeField] protected int probabilityToMultiply = 9;
+
 	[SerializeField] private AnimalBase animalToBear;
 
 	protected AnimalState currentState;
@@ -48,12 +51,25 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 		}
 	}
 
+	protected bool HasAnimalToMultiplyWith()
+	{
+		return animalToMultiplyWith != null;
+	}
+
 	private void SetAnimalToMultiplyWith(AnimalBase animal)
 	{
 		animalToMultiplyWith = animal;
 
 		animal.isAnimalTakenForMultiplying = true;
 		isAnimalTakenForMultiplying = true;
+	}
+
+	public void ResetAnimalMultiplication()
+	{
+		isAnimalTakenForMultiplying = false;
+
+		animalToMultiplyWith.isAnimalTakenForMultiplying = false; ;
+		animalToMultiplyWith = null;
 	}
 
 	protected void Start()
@@ -166,7 +182,10 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 
 	protected void StartMultiplying()
 	{
-		if(animalToMultiplyWith != null)
+		
+		bool shouldMultiply = UnityEngine.Random.Range(0, 10) >= probabilityToMultiply;
+
+		if (animalToMultiplyWith != null && shouldMultiply)
 		{
 			float distanceBetween = Vector3.Distance(transform.position, animalToMultiplyWith.transform.position);
 
@@ -177,17 +196,28 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 			}
 			else
 			{
-				float probabilityToMultiply = 6;
-				if(UnityEngine.Random.Range(0, 10) > probabilityToMultiply)
-				{
-					//Get middle point between 2 vectors
-					Vector3 spawnPos = transform.position + (animalToMultiplyWith.transform.position - transform.position) / 2;
-					var bornAnimal = Instantiate(animalToMultiplyWith, spawnPos, Quaternion.identity);
-					SetCurrentState(AnimalState.Idle);
-
-					StopMultiplying();
-				}
+				BearAnimal();
+				animalToMultiplyWith.BearAnimal();
+				SetCurrentState(AnimalState.Idle);
 			}
+		}
+		else
+		{
+			SetCurrentState(AnimalState.Walk);
+		}
+	}
+
+	public void BearAnimal()
+	{
+		if(gender == Gender.Female)
+		{
+			//Get middle point between 2 vectors
+			Vector3 spawnPos = transform.position + (animalToMultiplyWith.transform.position - transform.position) / 2;
+			Debug.Log("animalToMultiplyWith: " + animalToMultiplyWith);
+			var bornAnimal = Instantiate(animalToBear, spawnPos, Quaternion.identity);
+
+			animalToMultiplyWith.StopMultiplying();
+			StopMultiplying();
 		}
 	}
 

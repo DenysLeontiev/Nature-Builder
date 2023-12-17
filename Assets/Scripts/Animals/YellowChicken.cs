@@ -27,7 +27,7 @@ public class YellowChicken : AnimalBase
 			}
 			else
 			{
-				SetCurrentState(AnimalState.Multiply);
+				SetCurrentState(AnimalState.Idle);
 				currentTimeBetweenStates = Random.Range(animalSO.IdleMinTime, animalSO.IdleMaxTime);
 				targetPosition = RandomNavmeshLocation(radius);
 			}
@@ -36,9 +36,11 @@ public class YellowChicken : AnimalBase
 
 	protected override void IdleState()
 	{
+		Debug.Log("In IdleState");
 		currentTimeBetweenStates -= Time.deltaTime;
 		if (currentTimeBetweenStates < 0)
 		{
+			Debug.Log("In if statement");
 			SetCurrentState(AnimalState.Walk);
 		}
 	}
@@ -51,8 +53,9 @@ public class YellowChicken : AnimalBase
 		{
 			if(currentGrassToEat == null)
 			{
-				targetPosition = thingsToEat[Random.Range(0, thingsToEat.Length - 1)].transform.position;
+				//targetPosition = thingsToEat[Random.Range(0, thingsToEat.Length - 1)].transform.position;
 				currentGrassToEat = thingsToEat[Random.Range(0, thingsToEat.Length - 1)];
+				targetPosition = currentGrassToEat.transform.position;
 			}
 
 			if (Vector3.Distance(transform.position, currentGrassToEat.transform.position) > stopDistance)
@@ -79,7 +82,8 @@ public class YellowChicken : AnimalBase
 		if (currentTimeBetweenStates < 0)
 		{
 			timeSinceLastEaten = 0;
-			SetCurrentState(AnimalState.Walk);
+
+			SetCurrentState(AnimalState.Multiply);
 		}
 	}
 
