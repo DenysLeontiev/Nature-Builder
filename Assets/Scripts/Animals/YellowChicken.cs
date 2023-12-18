@@ -7,8 +7,6 @@ using UnityEngine.Rendering;
 
 public class YellowChicken : AnimalBase
 {
-	[SerializeField] private float rigidbodyEnambleTime = 0.5f;
-
 	private Grass[] thingsToEat = new Grass[0];
 	private Grass currentGrassToEat;
 
@@ -36,11 +34,9 @@ public class YellowChicken : AnimalBase
 
 	protected override void IdleState()
 	{
-		Debug.Log("In IdleState");
 		currentTimeBetweenStates -= Time.deltaTime;
 		if (currentTimeBetweenStates < 0)
 		{
-			Debug.Log("In if statement");
 			SetCurrentState(AnimalState.Walk);
 		}
 	}
@@ -84,6 +80,7 @@ public class YellowChicken : AnimalBase
 			timeSinceLastEaten = 0;
 
 			SetCurrentState(AnimalState.Multiply);
+			hasGivenBirth = false;
 		}
 	}
 

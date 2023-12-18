@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Yellow Chicken
   Description: Just yellow chicken
-  DelayBetweenSpawnTime: 4
+  DelayBetweenSpawnTime: 1
   MoneyToSpawn: 1
   MoneyReward: 5
   Sprite: {fileID: 21300000, guid: ee20d15fae4cbbf43a8ef1bcc93cab82, type: 3}

@@ -10,6 +10,7 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	[SerializeField] protected float moveSpeed = 1f;
 	[SerializeField] protected AnimalSO animalSO;
 	[SerializeField] protected float stopDistance = 0.4f;
+	[SerializeField] protected AnimalType animalType;
 
 	[Range(0, 10)]
 	[SerializeField] protected int probabilityToMultiply = 9;
@@ -20,6 +21,8 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	protected Animator animator;
 
 	protected Gender gender;
+
+	protected bool hasGivenBirth = false;
 
 	protected float currentTimeBetweenStates;
 	protected Vector3 targetPosition;
@@ -39,9 +42,9 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	{
 		if(animalToMultiplyWith == null)
 		{
-			possibleAnimalsToMultiplyWith = FindObjectsOfType<AnimalBase>().Where(a => a.gender != gender &&
-																				  a.isAnimalTakenForMultiplying == false &&
-																				  a.isGrown == true).ToList();
+			possibleAnimalsToMultiplyWith = FindObjectsOfType<AnimalBase>().Where(a => a.gender != this.gender &&
+																				  a.isGrown == true
+																				  && a.animalType == this.animalType).ToList();
 
 			if(possibleAnimalsToMultiplyWith.Count > 0)
 			{
@@ -62,6 +65,7 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 
 		animal.isAnimalTakenForMultiplying = true;
 		isAnimalTakenForMultiplying = true;
+
 	}
 
 	public void ResetAnimalMultiplication()
@@ -120,7 +124,7 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 
 	private void SetRandomGender()
 	{
-		int randomNumber = UnityEngine.Random.Range(0,3);
+		int randomNumber = UnityEngine.Random.Range(0,2);
 		gender = (Gender)randomNumber;
 		Debug.Log(gender);
 	}
@@ -182,10 +186,9 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 
 	protected void StartMultiplying()
 	{
-		
 		bool shouldMultiply = UnityEngine.Random.Range(0, 10) >= probabilityToMultiply;
 
-		if (animalToMultiplyWith != null && shouldMultiply)
+		if (animalToMultiplyWith != null)
 		{
 			float distanceBetween = Vector3.Distance(transform.position, animalToMultiplyWith.transform.position);
 
@@ -196,9 +199,18 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 			}
 			else
 			{
-				BearAnimal();
-				animalToMultiplyWith.BearAnimal();
-				SetCurrentState(AnimalState.Idle);
+				if(gender == Gender.Male)
+				{
+					animalToMultiplyWith.BearAnimal();
+				}
+				else
+				{
+					BearAnimal();
+				}
+				//BearAnimal();
+				//animalToMultiplyWith.BearAnimal();
+				SetCurrentState(AnimalState.Walk);
+				animalToMultiplyWith = null;
 			}
 		}
 		else
@@ -209,12 +221,13 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 
 	public void BearAnimal()
 	{
-		if(gender == Gender.Female)
+		if(gender == Gender.Female && !hasGivenBirth)
 		{
-			//Get middle point between 2 vectors
-			Vector3 spawnPos = transform.position + (animalToMultiplyWith.transform.position - transform.position) / 2;
-			Debug.Log("animalToMultiplyWith: " + animalToMultiplyWith);
+			Vector3 spawnOffset = Vector3.one * 3;
+			Vector3 spawnPos = transform.position + spawnOffset;
 			var bornAnimal = Instantiate(animalToBear, spawnPos, Quaternion.identity);
+
+			hasGivenBirth = true;
 
 			animalToMultiplyWith.StopMultiplying();
 			StopMultiplying();
@@ -225,7 +238,7 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	{
 		animalToMultiplyWith.isAnimalTakenForMultiplying = false;
 		isAnimalTakenForMultiplying = false;
-		animalToMultiplyWith = null;
+		animalToMultiplyWith.animalToMultiplyWith = null;
 	}
 
 	public PlaceableSO GetPlaceableSO()
