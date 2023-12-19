@@ -199,16 +199,14 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 			}
 			else
 			{
-				if(gender == Gender.Male)
+				if(animalToMultiplyWith.gender == Gender.Female)
 				{
 					animalToMultiplyWith.BearAnimal();
 				}
-				else
+				else if(gender == Gender.Female)
 				{
 					BearAnimal();
 				}
-				//BearAnimal();
-				//animalToMultiplyWith.BearAnimal();
 				SetCurrentState(AnimalState.Walk);
 				animalToMultiplyWith = null;
 			}
@@ -223,8 +221,15 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 	{
 		if(gender == Gender.Female && !hasGivenBirth)
 		{
-			Vector3 spawnOffset = Vector3.one * 3;
-			Vector3 spawnPos = transform.position + spawnOffset;
+			Vector3 spawnPoint = Vector3.zero;
+
+			if (animalToMultiplyWith != null)
+			{
+				// mid point between two parent
+				spawnPoint = Vector3.Lerp(transform.position, animalToMultiplyWith.transform.position, 0.5f);
+			}
+
+			Vector3 spawnPos = spawnPoint;
 			var bornAnimal = Instantiate(animalToBear, spawnPos, Quaternion.identity);
 
 			hasGivenBirth = true;
@@ -236,9 +241,13 @@ public abstract class AnimalBase : MonoBehaviour, IPlaceable
 
 	private void StopMultiplying()
 	{
-		animalToMultiplyWith.isAnimalTakenForMultiplying = false;
+		if(animalToMultiplyWith != null)
+		{
+			animalToMultiplyWith.animalToMultiplyWith = null;
+			animalToMultiplyWith.isAnimalTakenForMultiplying = false;
+		}
+
 		isAnimalTakenForMultiplying = false;
-		animalToMultiplyWith.animalToMultiplyWith = null;
 	}
 
 	public PlaceableSO GetPlaceableSO()

@@ -49,14 +49,12 @@ public class YellowChicken : AnimalBase
 		{
 			if(currentGrassToEat == null)
 			{
-				//targetPosition = thingsToEat[Random.Range(0, thingsToEat.Length - 1)].transform.position;
 				currentGrassToEat = thingsToEat[Random.Range(0, thingsToEat.Length - 1)];
 				targetPosition = currentGrassToEat.transform.position;
 			}
 
 			if (Vector3.Distance(transform.position, currentGrassToEat.transform.position) > stopDistance)
 			{
-				Debug.Log("Approaching");
 				MoveTo(currentGrassToEat.transform.position);
 			}
 			else

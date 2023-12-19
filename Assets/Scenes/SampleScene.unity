@@ -549,6 +549,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2112060460, guid: 4c03daf2e3d6bed48bb73e583c4d0d71, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1513288786897270533, guid: 4c03daf2e3d6bed48bb73e583c4d0d71, type: 3}
       propertyPath: nextButton
       value: 
