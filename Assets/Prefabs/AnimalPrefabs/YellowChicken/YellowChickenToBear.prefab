@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 182278722}
   - component: {fileID: 893180042}
   m_Layer: 0
-  m_Name: Toon Chick
+  m_Name: YellowChickenToBear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -599,9 +599,8 @@ MonoBehaviour:
   moveSpeed: 1
   animalSO: {fileID: 11400000, guid: 2d66362c1ed2019439874e9c8d00248f, type: 2}
   stopDistance: 0.4
-  animalType: 0
-  probabilityToMultiply: 9
-  animalToBear: {fileID: 182278722, guid: 51433d21ba7c90f4da0472ae5fd57a2b, type: 3}
+  animalToBear: {fileID: 182278722}
+  rigidbodyEnambleTime: 200
 --- !u!54 &893180042
 Rigidbody:
   m_ObjectHideFlags: 0
